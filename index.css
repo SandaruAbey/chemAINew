@@ -1,0 +1,764 @@
+/* Modern Chemistry Platform Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* CSS Custom Properties */
+:root {
+  /* Primary Brand Colors - Yellow Theme */
+  --primary-50: #fffbeb;
+  --primary-100: #fef3c7;
+  --primary-500: #f59e0b;
+  --primary-600: #d97706;
+  --primary-700: #b45309;
+  --primary-900: #78350f;
+
+  /* Chemistry Accent Colors */
+  --chemistry-yellow: #fbbf24;
+  --chemistry-amber: #f59e0b;
+  --chemistry-green: #10b981;
+  --chemistry-purple: #8b5cf6;
+  --chemistry-orange: #f59e0b;
+  --chemistry-red: #ef4444;
+
+  /* Neutral Colors */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  /* Glass Effect */
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --backdrop-blur: blur(20px);
+}
+
+/* Dark Mode Variables */
+.dark {
+  --glass-bg: rgba(30, 41, 59, 0.8);
+  --glass-border: rgba(148, 163, 184, 0.1);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-feature-settings: 'cv11', 'ss01';
+  font-variation-settings: 'opsz' 32;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-500);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-600);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: translate3d(0,0,0);
+  }
+  40%, 43% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    transform: translate3d(0,-4px,0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .7;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+/* Utility Classes */
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.5s ease-out;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Glass Morphism Effect */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  border: 1px solid var(--glass-border);
+}
+
+/* Gradient Backgrounds */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, var(--primary-500) 0%, var(--chemistry-blue) 100%);
+}
+
+.bg-gradient-secondary {
+  background: linear-gradient(135deg, var(--chemistry-purple) 0%, var(--chemistry-blue) 100%);
+}
+
+.bg-gradient-accent {
+  background: linear-gradient(135deg, var(--chemistry-green) 0%, var(--chemistry-blue) 100%);
+}
+
+.bg-gradient-warm {
+  background: linear-gradient(135deg, var(--chemistry-orange) 0%, var(--chemistry-red) 100%);
+}
+
+/* Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background: var(--primary-600);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  background: var(--primary-700);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+  background: var(--gray-100);
+  color: var(--gray-900);
+  border: 1px solid var(--gray-300);
+}
+
+.btn-secondary:hover {
+  background: var(--gray-50);
+  transform: translateY(-1px);
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.btn-md {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+/* Card Styles */
+.card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.card-glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  border: 1px solid var(--glass-border);
+}
+
+/* Input Styles */
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--gray-200);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: var(--gray-50);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
+
+.input::placeholder {
+  color: var(--gray-400);
+}
+
+/* Upload Area */
+.upload-area {
+  border: 2px dashed var(--gray-300);
+  border-radius: 1rem;
+  background: var(--gray-50);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-area:hover {
+  border-color: var(--primary-500);
+  background: var(--primary-50);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.upload-area::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(45deg, var(--primary-500), var(--chemistry-blue), var(--chemistry-green));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.upload-area:hover::after {
+  opacity: 0.7;
+}
+
+/* Chemistry Canvas */
+.chemistry-canvas {
+  background: 
+    linear-gradient(45deg, #f8fafc 25%, transparent 25%), 
+    linear-gradient(-45deg, #f8fafc 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #f8fafc 75%), 
+    linear-gradient(-45deg, transparent 75%, #f8fafc 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.chemistry-canvas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 30% 70%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.chemistry-canvas:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Progress Steps */
+.step-indicator {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--primary-600);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.step-indicator:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+.step-line {
+  width: 2px;
+  background: var(--gray-300);
+  position: relative;
+  overflow: hidden;
+}
+
+.step-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    var(--primary-500) 20%, 
+    var(--chemistry-blue) 50%, 
+    var(--primary-500) 80%, 
+    transparent 100%);
+  animation: flow 3s ease-in-out infinite;
+}
+
+@keyframes flow {
+  0%, 100% { 
+    transform: translateY(-100%); 
+    opacity: 0; 
+  }
+  50% { 
+    transform: translateY(100%); 
+    opacity: 1; 
+  }
+}
+
+/* Loading States */
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--gray-200);
+  border-top: 3px solid var(--primary-600);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-dots::after {
+  content: '';
+  animation: dots 1.5s steps(5, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60% { content: '...'; }
+  90%, 100% { content: ''; }
+}
+
+/* Error States */
+.error-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Success States */
+.success-bounce {
+  animation: success-bounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes success-bounce {
+  0% { 
+    transform: scale(0.3); 
+    opacity: 0; 
+  }
+  50% { 
+    transform: scale(1.05); 
+    opacity: 0.9; 
+  }
+  70% { 
+    transform: scale(0.9); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .chemistry-canvas {
+    background-size: 15px 15px;
+    padding: 1rem;
+  }
+  
+  .glass {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .animate-float {
+    animation: none;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus States */
+.focus-ring:focus {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Dark Mode Styles */
+.dark .card {
+  background: var(--gray-800);
+  color: white;
+}
+
+.dark .input {
+  background: var(--gray-700);
+  border-color: var(--gray-600);
+  color: white;
+}
+
+.dark .input:focus {
+  background: var(--gray-600);
+  border-color: var(--primary-500);
+}
+
+.dark .upload-area {
+  background: var(--gray-700);
+  border-color: var(--gray-600);
+}
+
+.dark .upload-area:hover {
+  background: var(--gray-600);
+}
+
+.dark .chemistry-canvas {
+  background: 
+    linear-gradient(45deg, var(--gray-700) 25%, transparent 25%), 
+    linear-gradient(-45deg, var(--gray-700) 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, var(--gray-700) 75%), 
+    linear-gradient(-45deg, transparent 75%, var(--gray-700) 75%);
+}
+
+/* Beautiful Test Tube Icon */
+.test-tube-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.test-tube-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, var(--chemistry-blue), var(--chemistry-green));
+  border-radius: 50%;
+  filter: blur(8px);
+  opacity: 0.3;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Floating Action Button */
+.fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: var(--primary-600);
+  color: white;
+  border: none;
+  box-shadow: var(--shadow-xl);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-2xl);
+  background: var(--primary-700);
+}
+
+@media (min-width: 768px) {
+  .fab {
+    display: none;
+  }
+}
+
+/* Mobile Specific Fixes for 320px width */
+@media (max-width: 375px) {
+  /* Header adjustments */
+  .header-title {
+    font-size: 0.875rem !important;
+    line-height: 1.2;
+  }
+  
+  .header-subtitle {
+    font-size: 0.6rem !important;
+  }
+  
+  /* Main container padding */
+  .main-container {
+    padding: 0.75rem !important;
+  }
+  
+  /* Hero section adjustments */
+  .hero-title {
+    font-size: 1.5rem !important;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.875rem !important;
+    line-height: 1.4;
+  }
+  
+  /* Card padding */
+  .main-card {
+    padding: 1rem !important;
+    margin: 0.5rem !important;
+    border-radius: 1rem !important;
+  }
+  
+  /* Button adjustments */
+  .btn-mobile {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.875rem !important;
+    min-height: 2.5rem;
+  }
+  
+  /* Input field adjustments */
+  .input-mobile {
+    padding: 0.625rem 0.75rem !important;
+    font-size: 0.875rem !important;
+  }
+  
+  /* Upload area */
+  .upload-area-mobile {
+    height: 8rem !important;
+    padding: 0.75rem !important;
+  }
+  
+  /* Language toggle */
+  .lang-toggle-mobile {
+    width: 2rem !important;
+    height: 2rem !important;
+    font-size: 0.75rem !important;
+    padding: 0.25rem !important;
+  }
+  
+  /* Step indicator */
+  .step-mobile {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    font-size: 0.75rem !important;
+  }
+  
+  /* Remove excessive margins/padding on mobile */
+  .space-y-mobile > * + * {
+    margin-top: 1rem !important;
+  }
+  
+  /* Molecule container adjustments */
+  .molecule-mobile {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+  
+  /* Grid adjustments */
+  .grid-mobile {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  
+  /* Text sizing */
+  .text-mobile-xs {
+    font-size: 0.625rem !important;
+  }
+  
+  .text-mobile-sm {
+    font-size: 0.75rem !important;
+  }
+  
+  .text-mobile-base {
+    font-size: 0.875rem !important;
+  }
+  
+  /* Chemistry canvas mobile */
+  .chemistry-canvas-mobile {
+    padding: 0.75rem !important;
+    min-height: 6rem !important;
+  }
+  
+  /* Badge adjustments */
+  .badge-mobile {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.625rem !important;
+  }
+  
+  /* Hide non-essential elements on very small screens */
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Ultra small screens (Galaxy Fold, etc.) */
+@media (max-width: 320px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .main-container {
+    padding: 0.5rem !important;
+  }
+  
+  .main-card {
+    padding: 0.75rem !important;
+    margin: 0.25rem !important;
+  }
+  
+  .hero-title {
+    font-size: 1.25rem !important;
+  }
+  
+  .btn-mobile {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.75rem !important;
+  }
+}

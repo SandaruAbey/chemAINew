@@ -15,9 +15,9 @@ const App: React.FC = () => {
   const [language, setLanguage] = useState<'en' | 'si'>('en');
 
   const [synthesisInput, setSynthesisInput] = useState<SynthesisInput>({
-    startCompound: 'C6H5CO2CH3',
-    targetCompound: 'C6H5C(CH2C6H5)=CHC6H5',
-    reagents: 'PCl3, Mg/dry ether, H+/H2O, LiAlH4, conc. H2SO4',
+    startCompound: '',
+    targetCompound: '',
+    reagents: '',
   });
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [analysisError, setAnalysisError] = useState<string | null>(null);
@@ -71,38 +71,95 @@ const App: React.FC = () => {
   }, [language, t.errorStartTargetRequired]);
 
   return (
-    <div className="flex flex-col min-h-screen font-sans text-slate-800 dark:text-slate-200">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-primary-50 to-primary-100 dark:from-gray-900 dark:via-gray-800 dark:to-primary-900">
       <Header language={language} toggleLanguage={toggleLanguage} />
-      <main className="flex-grow w-full max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 sm:p-8 space-y-8">
-          <div className="text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
-              {t.appTitle}
-            </h2>
-            <p className="mt-2 text-slate-600 dark:text-slate-400">
+      
+      {/* Hero Section */}
+      <section className="relative py-6 sm:py-12 lg:py-20 overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-16 sm:w-32 h-16 sm:h-32 bg-chemistry-yellow/10 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute top-3/4 right-1/4 w-20 sm:w-40 h-20 sm:h-40 bg-chemistry-green/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
+          <div className="absolute bottom-1/4 left-1/3 w-12 sm:w-24 h-12 sm:h-24 bg-chemistry-purple/10 rounded-full blur-3xl animate-float" style={{animationDelay: '4s'}}></div>
+        </div>
+        
+        <div className="main-container relative max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+          <div className="text-center mb-6 sm:mb-12 lg:mb-16 animate-fadeInUp">
+            {/* Main Title */}
+            <h1 className="hero-title text-2xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-6">
+              <span className="bg-gradient-to-r from-gray-900 via-primary-600 to-gray-900 dark:from-white dark:via-primary-400 dark:to-white bg-clip-text text-transparent">
+                {t.appTitle}
+              </span>
+            </h1>
+            
+            {/* Subtitle */}
+            <p className="hero-subtitle text-sm sm:text-lg lg:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-4 sm:mb-8 leading-relaxed px-2">
               {t.appSubtitle}
             </p>
-          </div>
-          <InputForm
-            onGenerate={handleGenerate}
-            isLoading={isLoading}
-            onAnalyzeImage={handleImageAnalysis}
-            isAnalyzing={isAnalyzing}
-            analysisError={analysisError}
-            synthesisInput={synthesisInput}
-            onInputChange={handleInputChange}
-            language={language}
-          />
-          {(isLoading || isAnalyzing) && <Loader isAnalyzing={isAnalyzing} language={language} />}
-          {error && (
-            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md" role="alert">
-              <p className="font-bold">{t.errorPathwayTitle}</p>
-              <p>{error}</p>
+            
+            {/* Feature badges */}
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-8 px-2">
+              <span className="badge-mobile px-2 sm:px-4 py-1 sm:py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-primary-600 dark:text-primary-400 rounded-full font-semibold text-xs sm:text-sm border border-primary-200 dark:border-primary-800 animate-slideInRight">
+                🧬 AI-Powered
+              </span>
+              <span className="badge-mobile px-2 sm:px-4 py-1 sm:py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-chemistry-green rounded-full font-semibold text-xs sm:text-sm border border-green-200 dark:border-green-800 animate-slideInRight" style={{animationDelay: '0.1s'}}>
+                ⚗️ Synthesis
+              </span>
+              <span className="badge-mobile px-2 sm:px-4 py-1 sm:py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-chemistry-purple rounded-full font-semibold text-xs sm:text-sm border border-purple-200 dark:border-purple-800 animate-slideInRight" style={{animationDelay: '0.2s'}}>
+                📊 Real-time
+              </span>
             </div>
-          )}
-          <ResultDisplay result={synthesisResult} language={language} />
+          </div>
+          
+          {/* Main Content Card */}
+          <div className="max-w-5xl mx-auto">
+            <div className="main-card card-glass rounded-2xl sm:rounded-3xl p-3 sm:p-6 lg:p-10 shadow-2xl animate-fadeInUp" style={{animationDelay: '0.3s'}}>
+              <InputForm
+                onGenerate={handleGenerate}
+                isLoading={isLoading}
+                onAnalyzeImage={handleImageAnalysis}
+                isAnalyzing={isAnalyzing}
+                analysisError={analysisError}
+                synthesisInput={synthesisInput}
+                onInputChange={handleInputChange}
+                language={language}
+              />
+              
+              {/* Loading State */}
+              {(isLoading || isAnalyzing) && (
+                <div className="mt-8 animate-fadeIn">
+                  <Loader isAnalyzing={isAnalyzing} language={language} />
+                </div>
+              )}
+              
+              {/* Error State */}
+              {error && (
+                <div className="mt-8 animate-fadeIn">
+                  <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 p-6 rounded-2xl shadow-lg error-shake" role="alert">
+                    <div className="flex items-start">
+                      <svg className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <div>
+                        <h3 className="font-bold text-lg mb-1">{t.errorPathwayTitle}</h3>
+                        <p className="text-base">{error}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {/* Results */}
+              {synthesisResult && (
+                <div className="mt-8 success-bounce">
+                  <ResultDisplay result={synthesisResult} language={language} />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      </main>
+      </section>
+      
       <Footer language={language} />
     </div>
   );

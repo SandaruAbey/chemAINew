@@ -4,7 +4,7 @@ export const translations = {
     appSubtitle: "For Sri Lankan A/L Chemistry Students.",
     footerText: "© {year} Organic Synthesis Pathfinder. AI-Powered for A/L Students By Sandaru Abey.",
     // Header
-    headerTitle: "Organic Synthesis Pathfinder",
+    headerTitle: "ChemAI",
     languageToggle: "සිං",
     // Loader
     analyzingImage: "Analyzing image with AI...",
@@ -44,7 +44,7 @@ export const translations = {
     appSubtitle: "ශ්‍රී ලංකා උ/පෙළ රසායන විද්‍යා සිසුන් සඳහා",
     footerText: "© {year} කාබනික සංශ්ලේෂණ මාර්ගෝපදේශකය. AI බලයෙන් ක්‍රියාත්මකයි.By Sandaru Abey",
     // Header
-    headerTitle: "කාබනික සංශ්ලේෂණ මාර්ගෝපදේශකය",
+    headerTitle: "ChemAI",
     languageToggle: "EN",
     // Loader
     analyzingImage: "කෘත්‍රිම බුද්ධිය මගින් රූපය විශ්ලේෂණය කරමින් පවතී...",
