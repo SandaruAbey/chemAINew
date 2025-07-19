@@ -1,0 +1,82 @@
+export const translations = {
+  en: {
+    appTitle: "Organic Synthesis Pathfinder",
+    appSubtitle: "For Sri Lankan A/L Chemistry Students.",
+    footerText: "© {year} Organic Synthesis Pathfinder. AI-Powered for A/L Students By Sandaru Abey.",
+    // Header
+    headerTitle: "Organic Synthesis Pathfinder",
+    languageToggle: "සිං",
+    // Loader
+    analyzingImage: "Analyzing image with AI...",
+    generatingPathway: "Generating synthesis pathway...",
+    // Input Form
+    option1Title: "Option 1: Analyze a Question from an Image",
+    uploadPrompt: "Click to upload",
+    uploadPromptDrag: "or drag and drop",
+    uploadFileType: "PNG, JPG, or WEBP",
+    analysisFailed: "Image Analysis Failed:",
+    analyzeButton: "Analyze with AI",
+    analyzingButton: "Analyzing...",
+    dividerText: "OR",
+    option2Title: "Option 2: Enter Manually",
+    startCompoundLabel: "Starting Compound",
+    startCompoundPlaceholder: "e.g., Benzene",
+    targetCompoundLabel: "Target Compound",
+    targetCompoundPlaceholder: "e.g., Aniline",
+    reagentsLabel: "Include Reagents / Conditions (Optional)",
+    reagentsPlaceholder: "e.g., PCl3, Mg/dry ether",
+    generateButton: "Generate Pathway",
+    generatingButton: "Generating...",
+    // Result Display
+    noPathwayGenerated: "No Pathway Generated",
+    noPathwayPrompt: 'Enter your compounds above and click "Generate Pathway" to see the magic happen.',
+    summaryTitle: "AI-Generated Synthesis Summary",
+    pathwayTitle: "Proposed Reaction Pathway",
+    reagentsAndConditions: "Reagents & Conditions:",
+    product: "Product:",
+    products: "Products:",
+    // Errors
+    errorPathwayTitle: "Error Generating Pathway",
+    errorStartTargetRequired: "Starting and target compounds are required.",
+  },
+  si: {
+    appTitle: "කාබනික සංශ්ලේෂණ මාර්ගෝපදේශකය",
+    appSubtitle: "ශ්‍රී ලංකා උ/පෙළ රසායන විද්‍යා සිසුන් සඳහා",
+    footerText: "© {year} කාබනික සංශ්ලේෂණ මාර්ගෝපදේශකය. AI බලයෙන් ක්‍රියාත්මකයි.By Sandaru Abey",
+    // Header
+    headerTitle: "කාබනික සංශ්ලේෂණ මාර්ගෝපදේශකය",
+    languageToggle: "EN",
+    // Loader
+    analyzingImage: "කෘත්‍රිම බුද්ධිය මගින් රූපය විශ්ලේෂණය කරමින් පවතී...",
+    generatingPathway: "සංශ්ලේෂණ මාර්ගය ජනනය කරමින් පවතී...",
+    // Input Form
+    option1Title: "විකල්ප 1: රූපයකින් ප්‍රශ්නයක් විශ්ලේෂණය කරන්න",
+    uploadPrompt: "උඩුගත කිරීමට ක්ලික් කරන්න",
+    uploadPromptDrag: "නැතහොත් ඇද දමන්න",
+    uploadFileType: "PNG, JPG, or WEBP",
+    analysisFailed: "රූප විශ්ලේෂණය අසාර්ථකයි:",
+    analyzeButton: "AI සමඟ විශ්ලේෂණය කරන්න",
+    analyzingButton: "විශ්ලේෂණය කරමින්...",
+    dividerText: "හෝ",
+    option2Title: "විකල්ප 2: අතින් ඇතුලත් කරන්න",
+    startCompoundLabel: "ආරම්භක සංයෝගය",
+    startCompoundPlaceholder: "උදා., බෙන්සීන්",
+    targetCompoundLabel: "ඉලක්කගත සංයෝගය",
+    targetCompoundPlaceholder: "උදා., ඇනිලීන්",
+    reagentsLabel: "ප්‍රතික්‍රියක / කොන්දේසි ඇතුළත් කරන්න (වෛකල්පිත)",
+    reagentsPlaceholder: "උදා., PCl3, වියළි ඊතර්",
+    generateButton: "මාර්ගය ජනනය කරන්න",
+    generatingButton: "ජනනය කරමින්...",
+    // Result Display
+    noPathwayGenerated: "මාර්ගයක් ජනනය කර නොමැත",
+    noPathwayPrompt: "මැජික් එක බැලීමට ඉහතින් ඔබේ සංයෝග ඇතුළත් කර 'මාර්ගය ජනනය කරන්න' ක්ලික් කරන්න.",
+    summaryTitle: "AI-ජනිත සංශ්ලේෂණ සාරාංශය",
+    pathwayTitle: "යෝජිත ප්‍රතික්‍රියා මාර්ගය",
+    reagentsAndConditions: "ප්‍රතික්‍රියක සහ කොන්දේසි:",
+    product: "ඵලය:",
+    products: "ඵල:",
+    // Errors
+    errorPathwayTitle: "මාර්ගය ජනනය කිරීමේ දෝෂයකි",
+    errorStartTargetRequired: "ආරම්භක සහ ඉලක්කගත සංයෝග අවශ්‍ය වේ.",
+  }
+};

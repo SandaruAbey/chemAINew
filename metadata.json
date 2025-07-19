@@ -1,0 +1,8 @@
+{
+  "name": "Advance of ChemAI Canves issue ",
+  "description": "An AI-powered tool for Sri Lankan A/L students to generate organic chemistry synthesis pathways. Input a starting material and target product, or upload an image of the question, to see the step-by-step reaction.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "prompt": ""
+}
