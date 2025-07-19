@@ -38,6 +38,23 @@ export const translations = {
     // Errors
     errorPathwayTitle: "Error Generating Pathway",
     errorStartTargetRequired: "Starting and target compounds are required.",
+    // Authentication
+    loginSignup: "Login / Sign Up",
+    completeProfile: "Complete Your Profile",
+    authDescription: "Sign in to unlock unlimited synthesis generations and save your work!",
+    signInWithGoogle: "Sign in with Google",
+    signingIn: "Signing in...",
+    authBenefits: "Benefits of signing up:",
+    unlimitedSynthesis: "Unlimited synthesis generations",
+    saveHistory: "Save and access your synthesis history",
+    personalizedExperience: "Personalized learning experience",
+    mobileNumberRequired: "Please provide your mobile number to complete registration (required for Sri Lankan students):",
+    mobileNumberLabel: "Mobile Number",
+    mobileNumberPlaceholder: "e.g., +94771234567",
+    completeRegistration: "Complete Registration",
+    synthesisLimitReached: "Synthesis Limit Reached",
+    synthesisLimitMessage: "You've used all 5 free synthesis generations. Sign in to continue with unlimited access!",
+    remainingSynthesis: "Remaining free generations: {count}",
   },
   si: {
     appTitle: "කාබනික සංශ්ලේෂණ මාර්ගෝපදේශකය",
@@ -78,5 +95,22 @@ export const translations = {
     // Errors
     errorPathwayTitle: "මාර්ගය ජනනය කිරීමේ දෝෂයකි",
     errorStartTargetRequired: "ආරම්භක සහ ඉලක්කගත සංයෝග අවශ්‍ය වේ.",
+    // Authentication
+    loginSignup: "පිවිසුම / ලියාපදිංචි වීම",
+    completeProfile: "ඔබේ පැතිකඩ සම්පූර්ණ කරන්න",
+    authDescription: "අසීමිත සංශ්ලේෂණ ජනනය සහ ඔබේ වැඩ සුරැකීමට පිවිසෙන්න!",
+    signInWithGoogle: "ගූගල් සමඟ පිවිසෙන්න",
+    signingIn: "පිවිසෙමින්...",
+    authBenefits: "ලියාපදිංචි වීමේ ප්‍රතිලාභ:",
+    unlimitedSynthesis: "අසීමිත සංශ්ලේෂණ ජනනය",
+    saveHistory: "ඔබේ සංශ්ලේෂණ ඉතිහාසය සුරකින්න සහ ප්‍රවේශ වන්න",
+    personalizedExperience: "පුද්ගලීකරණය කළ ඉගෙනුම් අත්දැකීම",
+    mobileNumberRequired: "ලියාපදිංචි කිරීම සම්පූර්ණ කිරීමට කරුණාකර ඔබේ ජංගම දුරකථන අංකය ලබා දෙන්න (ශ්‍රී ලංකා සිසුන් සඳහා අවශ්‍ය):",
+    mobileNumberLabel: "ජංගම දුරකථන අංකය",
+    mobileNumberPlaceholder: "උදා., +94771234567",
+    completeRegistration: "ලියාපදිංචිය සම්පූර්ණ කරන්න",
+    synthesisLimitReached: "සංශ්ලේෂණ සීමාව ළඟා වී ඇත",
+    synthesisLimitMessage: "ඔබ නොමිලේ සංශ්ලේෂණ ජනනය 5ම භාවිතා කර ඇත. අසීමිත ප්‍රවේශය සමඟ ඉදිරියට යාමට පිවිසෙන්න!",
+    remainingSynthesis: "ඉතිරි නොමිලේ ජනනය: {count}",
   }
 };

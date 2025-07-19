@@ -4,15 +4,23 @@ import { InputForm } from './components/InputForm';
 import { ResultDisplay } from './components/ResultDisplay';
 import { Loader } from './components/Loader';
 import { Footer } from './components/Footer';
+import { AuthModal } from './components/AuthModal';
+import { SynthesisLimitModal } from './components/SynthesisLimitModal';
+import { MobileNumberModal } from './components/MobileNumberModal';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { generateSynthesisPath, analyzeChemistryImage } from './services/geminiService';
 import type { SynthesisResult, SynthesisInput } from './types';
 import { translations } from './utils/translations';
+import { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
-const App: React.FC = () => {
+const AppContent: React.FC = () => {
   const [synthesisResult, setSynthesisResult] = useState<SynthesisResult | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [language, setLanguage] = useState<'en' | 'si'>('en');
+  const [showAuthModal, setShowAuthModal] = useState<boolean>(false);
+  const [showLimitModal, setShowLimitModal] = useState<boolean>(false);
 
   const [synthesisInput, setSynthesisInput] = useState<SynthesisInput>({
     startCompound: '',
@@ -21,6 +29,8 @@ const App: React.FC = () => {
   });
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [analysisError, setAnalysisError] = useState<string | null>(null);
+
+  const { canCreateSynthesis, incrementSynthesisCount, showMobileModal, setShowMobileModal } = useAuth();
 
   const t = translations[language];
 
@@ -37,19 +47,29 @@ const App: React.FC = () => {
     setAnalysisError(null);
     setError(null);
     setSynthesisResult(null);
+    
     try {
+      toast.loading('Analyzing chemistry image...', { id: 'image-analysis' });
       const result = await analyzeChemistryImage(file, language);
       setSynthesisInput(result);
+      toast.success('Image analyzed successfully!', { id: 'image-analysis' });
     } catch (err) {
       console.error("Error analyzing image:", err);
       const errorMessage = err instanceof Error ? err.message : "An unknown error occurred during image analysis.";
       setAnalysisError(errorMessage);
+      toast.error(errorMessage, { id: 'image-analysis' });
     } finally {
       setIsAnalyzing(false);
     }
   };
 
   const handleGenerate = useCallback(async (inputs: SynthesisInput) => {
+    // Check if user can create synthesis
+    if (!canCreateSynthesis) {
+      setShowLimitModal(true);
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
     setAnalysisError(null);
@@ -59,20 +79,31 @@ const App: React.FC = () => {
       if (!inputs.startCompound || !inputs.targetCompound) {
         throw new Error(t.errorStartTargetRequired);
       }
+      
+      toast.loading('Generating synthesis pathway...', { id: 'synthesis' });
       const result = await generateSynthesisPath(inputs, language);
       setSynthesisResult(result);
+      
+      // Increment synthesis count after successful generation
+      await incrementSynthesisCount();
+      toast.success('Synthesis pathway generated successfully!', { id: 'synthesis' });
     } catch (err) {
       console.error("Error generating synthesis path:", err);
       const errorMessage = err instanceof Error ? err.message : "An unknown error occurred. Please check the browser console for details.";
       setError(errorMessage);
+      toast.error(errorMessage, { id: 'synthesis' });
     } finally {
       setIsLoading(false);
     }
-  }, [language, t.errorStartTargetRequired]);
+  }, [language, t.errorStartTargetRequired, canCreateSynthesis, incrementSynthesisCount]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-primary-50 to-primary-100 dark:from-gray-900 dark:via-gray-800 dark:to-primary-900">
-      <Header language={language} toggleLanguage={toggleLanguage} />
+      <Header 
+        language={language} 
+        toggleLanguage={toggleLanguage}
+        onShowAuthModal={() => setShowAuthModal(true)}
+      />
       
       {/* Hero Section */}
       <section className="relative py-6 sm:py-12 lg:py-20 overflow-hidden">
@@ -161,7 +192,66 @@ const App: React.FC = () => {
       </section>
       
       <Footer language={language} />
+
+      {/* Authentication Modal */}
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+      />
+
+      {/* Synthesis Limit Modal */}
+      <SynthesisLimitModal
+        isOpen={showLimitModal}
+        onClose={() => setShowLimitModal(false)}
+        onSignIn={() => {
+          setShowLimitModal(false);
+          setShowAuthModal(true);
+        }}
+        language={language}
+      />
+
+      {/* Mobile Number Modal for Google sign-ins */}
+      <MobileNumberModal
+        isOpen={showMobileModal}
+        onClose={() => setShowMobileModal(false)}
+      />
+
+      {/* Toast Notifications */}
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#fff',
+            color: '#333',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
+            borderRadius: '12px',
+            padding: '16px',
+            fontSize: '14px',
+          },
+          success: {
+            iconTheme: {
+              primary: '#10b981',
+              secondary: '#fff',
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#fff',
+            },
+          },
+        }}
+      />
     </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 };
 
