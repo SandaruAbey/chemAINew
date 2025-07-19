@@ -4,6 +4,70 @@ interface IconProps {
     className?: string;
 }
 
+export const TestTubeIcon: React.FC<IconProps> = ({ className }) => (
+    <div className={`test-tube-icon ${className}`}>
+        <svg 
+            viewBox="0 0 100 100" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-full relative z-10"
+        >
+            {/* Test tube body */}
+            <path
+                d="M35 15 L35 55 Q35 70 45 80 Q55 90 65 80 Q75 70 75 55 L75 15"
+                fill="url(#testTubeGradient)"
+                stroke="url(#testTubeBorder)"
+                strokeWidth="2"
+            />
+            
+            {/* Liquid inside */}
+            <path
+                d="M38 50 L38 55 Q38 68 48 75 Q58 82 68 75 Q72 68 72 55 L72 50"
+                fill="url(#liquidGradient)"
+                opacity="0.8"
+            />
+            
+            {/* Bubbles */}
+            <circle cx="45" cy="65" r="2" fill="rgba(255,255,255,0.6)" />
+            <circle cx="55" cy="58" r="1.5" fill="rgba(255,255,255,0.4)" />
+            <circle cx="62" cy="68" r="1" fill="rgba(255,255,255,0.3)" />
+            
+            {/* Cork/cap */}
+            <rect x="32" y="10" width="36" height="8" rx="4" fill="url(#corkGradient)" />
+            
+            {/* Measurement lines */}
+            <line x1="30" y1="25" x2="33" y2="25" stroke="#94a3b8" strokeWidth="1" />
+            <line x1="30" y1="35" x2="33" y2="35" stroke="#94a3b8" strokeWidth="1" />
+            <line x1="30" y1="45" x2="33" y2="45" stroke="#94a3b8" strokeWidth="1" />
+            
+            {/* Gradient definitions */}
+            <defs>
+                <linearGradient id="testTubeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
+                    <stop offset="50%" stopColor="rgba(255,255,255,0.7)" />
+                    <stop offset="100%" stopColor="rgba(255,255,255,0.5)" />
+                </linearGradient>
+                
+                <linearGradient id="testTubeBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#3b82f6" />
+                    <stop offset="100%" stopColor="#0ea5e9" />
+                </linearGradient>
+                
+                <linearGradient id="liquidGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#10b981" />
+                    <stop offset="50%" stopColor="#0ea5e9" />
+                    <stop offset="100%" stopColor="#8b5cf6" />
+                </linearGradient>
+                
+                <linearGradient id="corkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#d97706" />
+                    <stop offset="100%" stopColor="#92400e" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+);
+
 export const FlaskIcon: React.FC<IconProps> = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9.5l-3 6.5h6l-3-6.5z" />
