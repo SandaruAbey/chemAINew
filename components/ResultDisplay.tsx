@@ -93,6 +93,19 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, language }
                                 <h6 className="text-center font-bold text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-600 py-1 sm:py-2 px-2 sm:px-4 rounded-lg text-xs sm:text-base">
                                   {product.name}
                                 </h6>
+                                
+                                {/* Text Structure */}
+                                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-2 sm:p-3">
+                                  <div className="text-center">
+                                    <h6 className="text-xs sm:text-sm font-semibold text-blue-700 dark:text-blue-300 mb-1">
+                                      📝 {t.textStructure}
+                                    </h6>
+                                    <p className="font-mono text-xs sm:text-sm text-blue-800 dark:text-blue-200 bg-white dark:bg-gray-800 px-2 py-1 rounded border break-all">
+                                      {product.textStructure}
+                                    </p>
+                                  </div>
+                                </div>
+                                
                                 {product.SVG && (
                                   <div className="chemistry-canvas chemistry-canvas-mobile bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 flex justify-center items-center min-h-[120px] sm:min-h-[200px] p-2 sm:p-4">
                                     <div
