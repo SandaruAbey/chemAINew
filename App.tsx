@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { Analytics } from "@vercel/analytics/react"
 import { Header } from './components/Header';
 import { InputForm } from './components/InputForm';
 import { ResultDisplay } from './components/ResultDisplay';
@@ -98,13 +99,13 @@ const AppContent: React.FC = () => {
   }, [language, t.errorStartTargetRequired, canCreateSynthesis, incrementSynthesisCount]);
 
   return (
+    
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-primary-50 to-primary-100 dark:from-gray-900 dark:via-gray-800 dark:to-primary-900">
       <Header 
         language={language} 
         toggleLanguage={toggleLanguage}
         onShowAuthModal={() => setShowAuthModal(true)}
       />
-      
       {/* Hero Section */}
       <section className="relative py-6 sm:py-12 lg:py-20 overflow-hidden">
         {/* Background decoration */}
@@ -251,6 +252,7 @@ const App: React.FC = () => {
   return (
     <AuthProvider>
       <AppContent />
+      <Analytics />
     </AuthProvider>
   );
 };
