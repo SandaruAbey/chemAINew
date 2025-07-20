@@ -35,6 +35,7 @@ export const translations = {
     reagentsAndConditions: "Reagents & Conditions:",
     product: "Product:",
     products: "Products:",
+    textStructure: "Text Structure:",
     // Errors
     errorPathwayTitle: "Error Generating Pathway",
     errorStartTargetRequired: "Starting and target compounds are required.",
@@ -92,6 +93,7 @@ export const translations = {
     reagentsAndConditions: "ප්‍රතික්‍රියක සහ කොන්දේසි:",
     product: "ඵලය:",
     products: "ඵල:",
+    textStructure: "පාඨ ව්‍යුහය:",
     // Errors
     errorPathwayTitle: "මාර්ගය ජනනය කිරීමේ දෝෂයකි",
     errorStartTargetRequired: "ආරම්භක සහ ඉලක්කගත සංයෝග අවශ්‍ය වේ.",

@@ -33,12 +33,13 @@ const synthesisSchema = {
               properties: {
                 name: { type: Type.STRING, description: "The chemical name of the product." },
                 SMILES: { type: Type.STRING, description: "The SMILES string for the product (e.g., 'Cc1ccccc1')." },
+                textStructure: { type: Type.STRING, description: "A human-readable text representation of the chemical structure showing explicit bonds and hydrogen atoms, written as a condensed structural formula (e.g., 'CH3-CH(COCl)-CH3' or 'C6H5-NH2'). This should be similar to how structures are drawn on paper but in text format." },
                 SVG: {
                   type: Type.STRING,
                   description: "A compact, single-line SVG string of the product's 2D chemical structure, drawn as a condensed formula with explicit bonds. The SVG MUST be scalable and follow these strict rules: 1. It MUST have a `viewBox` attribute that frames the drawing with at least 15 units of padding on all sides to prevent clipping. 2. Do NOT include `width` or `height` attributes. 3. Use a transparent background, with black strokes and text. 4. Bonds must be clean, straight lines connecting the correct atoms (e.g., pointing to the 'C' in a 'CH' group). 5. Use a generic sans-serif font for text elements (e.g., CH3, OH, Cl). 6. Do NOT include XML declarations or comments."
                 }
               },
-              required: ["name", "SMILES", "SVG"]
+              required: ["name", "SMILES", "textStructure", "SVG"]
             }
           }
         },
@@ -157,7 +158,8 @@ export const generateSynthesisPath = async (inputs: SynthesisInput, language: 'e
     For each product, provide:
     1.  Its chemical name.
     2.  Its SMILES string.
-    3.  A compact, single-line SVG string of its 2D chemical structure. This SVG must be generated with extreme precision according to these rules:
+    3.  A human-readable text structure representation that shows explicit bonds and hydrogen atoms as they would appear in a textbook (e.g., 'CH3-CH(COCl)-CH3', 'C6H5-NH2', 'CH3-CO-CH3'). This should clearly show the connectivity and functional groups in an easy-to-read format.
+    4.  A compact, single-line SVG string of its 2D chemical structure. This SVG must be generated with extreme precision according to these rules:
         - The style should be a condensed structural formula with explicit bonds (e.g., CH3-CH2-OH).
         - It MUST have a 'viewBox' attribute. The viewBox must be calculated to include a generous padding of at least 15 units around the entire drawing on all four sides to prevent any part of the text or lines from being clipped.
         - The root <svg> tag MUST NOT have 'width' or 'height' attributes.

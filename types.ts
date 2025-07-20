@@ -2,6 +2,7 @@
 export interface Product {
   name: string;
   SMILES: string;
+  textStructure: string;
   SVG: string;
 }
 
