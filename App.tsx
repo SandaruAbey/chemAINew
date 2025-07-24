@@ -186,12 +186,12 @@ const AppContent: React.FC = () => {
                 <div className="mt-8 success-bounce">
                   <ResultDisplay result={synthesisResult} language={language} />
                 </div>
-              )}
+              )}.
+              <div id="container-87778c7d5f4ed77aa17e8553b3feba61"></div>
             </div>
           </div>
         </div>
       </section>
-      <div id="container-87778c7d5f4ed77aa17e8553b3feba61"></div>
       <Footer language={language} />
 
       {/* Authentication Modal */}
