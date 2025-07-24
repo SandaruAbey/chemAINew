@@ -191,7 +191,7 @@ const AppContent: React.FC = () => {
           </div>
         </div>
       </section>
-      
+      <div id="container-87778c7d5f4ed77aa17e8553b3feba61"></div>
       <Footer language={language} />
 
       {/* Authentication Modal */}
