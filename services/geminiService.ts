@@ -111,7 +111,7 @@ Your response MUST be only the raw JSON object that conforms to the provided sch
 
     try {
         const response = await ai.models.generateContent({
-            model: "gemini-2.5-flash",
+            model: "gemini-3-flash-preview",
             contents: { parts: [ { text: prompt }, imagePart ] },
             config: {
                 responseMimeType: "application/json",
